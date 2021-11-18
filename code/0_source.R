@@ -13,7 +13,6 @@ library(tidyverse)
 library(rvest)
 library(janitor)
 library(here)
-library(spotifyr)
 library(lubridate)
 
 # database libraries
