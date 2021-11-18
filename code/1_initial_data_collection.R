@@ -59,6 +59,3 @@ DBI::dbWriteTable(springsteen_db,
 ### and also close the database connection
 
 DBI::dbDisconnect(springsteen_db)
-
-
-
