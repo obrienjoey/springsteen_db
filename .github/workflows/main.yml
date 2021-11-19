@@ -2,7 +2,7 @@ name: springsteen_data
 # Controls when the action will run.
 on:
   schedule:
-    - cron:  '00 11 * * *'
+    - cron:  '00 12 * * *'
 jobs: 
   NewSetlistScrape:
     # The type of runner that the job will run on
