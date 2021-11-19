@@ -2,7 +2,7 @@ name: springsteen_data
 # Controls when the action will run.
 on:
   schedule:
-    - cron:  '00 12 * * *'
+    - cron:  '30 21 * * *'
 jobs: 
   NewSetlistScrape:
     # The type of runner that the job will run on
@@ -25,7 +25,7 @@ jobs:
       shell: Rscript {0}
     # Run R script
     - name: Update Data
-      run: Rscript code/1_initial_data_collection.R
+      run: Rscript code/2_update_databases.R
       
  # Add new files in data folder, commit along with other modified files, push
     - name: Commit Files 
