@@ -23,7 +23,7 @@ setlist_df = map_df(concert_df$gig_url, get_setlist)
 ### find all tours
 tour_df = get_tour_names()
 ### and their associated concerts
-gig_link_df = map2_df(unique(tours$tour), unique(tours$tour_url), get_tour_gigs)
+gig_link_df = map2_df(unique(tour_df$tour), unique(tour_df$tour_url), get_tour_gigs)
 
 ### find all songs performed by Bruce Springsteen
 song_df = get_songs()
