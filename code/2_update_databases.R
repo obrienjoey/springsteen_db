@@ -42,7 +42,7 @@ update_dbs <- function(check_date = today(),
                       name = "setlists",
                       value = new_setlists,
                       append = TRUE)
-  }
+  }else{cat('Nothing new to add today :(')}
   
   ### update the concert link table
   
