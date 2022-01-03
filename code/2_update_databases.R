@@ -24,13 +24,18 @@ update_dbs <- function(check_date = today(),
   ### in case more than one has been added and compare with
   ### the current database
   
-  gigs_to_check = concerts_in_year %>%
-    mutate(date = ymd(date)) %>%
-    anti_join(., springsteen_db %>%
-                tbl(., 'setlists') %>%
-                collect) %>%
-    filter(date < check_date) %>%
-    pull(gig_url)
+  if(nrow(concerts_in_year) != 0){
+    gigs_to_check = concerts_in_year %>%
+      mutate(date = ymd(date)) %>%
+      anti_join(., springsteen_db %>%
+                  tbl(., 'setlists') %>%
+                  collect) %>%
+      filter(date < check_date) %>%
+      pull(gig_url)
+  }else{
+    gigs_to_check = c()
+    cat('No concerts recorded this year so far :(')
+  }
   
   ### check if there are any new concerts to collect and if so
   ### scrape the setlist
