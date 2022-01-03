@@ -34,7 +34,9 @@ get_concerts_by_year <- function(year = 2021){
   ### output : a tibble with details of the concert
   
   url = paste0('http://brucebase.wikidot.com/', year)
-  html = rvest::read_html(url)
+  html = url %>%
+          httr::GET(., httr::timeout(10)) %>%
+          rvest::read_html()
   
   gig_url = html %>%
     html_elements('strong') %>%
