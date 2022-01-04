@@ -80,22 +80,23 @@ update_dbs <- function(check_date = today(),
   current_tour = tours %>%
     filter(years == year(check_date))
   
-  ### obtain all concert from this tours and check if we already have them all
-  tour_concerts_year = map2_df(current_tour$tour, current_tour$tour_url,
-                               get_tour_gigs)
-  
-  new_concerts_year = tour_concerts_year %>%
-    anti_join(., springsteen_db %>%
-                tbl(., 'concert_tours') %>%
-                collect(), by = 'gig_url')
-  
-  ### if any are missing, add them to the table
-  
-  if(length(new_concerts) != 0){
-    DBI::dbWriteTable(conn = springsteen_db, 
-                      name = "concert_tours",
-                      value = new_concerts_year,
-                      append = TRUE)
+  if(length(current_tour) != 0){
+    ### obtain all concert from this tours and check if we already have them all
+    tour_concerts_year = map2_df(current_tour$tour, current_tour$tour_url,
+                                 get_tour_gigs)
+
+    new_concerts_year = tour_concerts_year %>%
+      anti_join(., springsteen_db %>%
+                  tbl(., 'concert_tours') %>%
+                  collect(), by = 'gig_url')
+
+    ### if any are missing, add them to the table
+
+    if(length(new_concerts_year) != 0){
+      DBI::dbWriteTable(conn = springsteen_db, 
+                        name = "concert_tours",
+                        value = new_concerts_year,
+                        append = TRUE)
   }
   
   ### disconnect from the database
