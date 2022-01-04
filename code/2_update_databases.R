@@ -97,6 +97,7 @@ update_dbs <- function(check_date = today(),
                         name = "concert_tours",
                         value = new_concerts_year,
                         append = TRUE)
+    }
   }
   
   ### disconnect from the database
