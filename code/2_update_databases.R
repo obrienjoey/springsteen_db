@@ -34,7 +34,7 @@ update_dbs <- function(check_date = today(),
       pull(gig_url)
   }else{
     gigs_to_check = c()
-    cat('No concerts recorded this year so far :(')
+    cat('No concerts recorded this year so far :( \n')
   }
   
   ### check if there are any new concerts to collect and if so
@@ -57,7 +57,10 @@ update_dbs <- function(check_date = today(),
                   tbl(., 'concerts') %>%
                   collect(), by = 'gig_url')
     
-  }else{cat('Nothing new to add today :( \n')}
+  }else{
+    new_concerts = c()
+    cat('Nothing new to add today :( \n')
+  }
   
   ### check if there are any new concerts to collect and if so
   ### scrape the concert details
