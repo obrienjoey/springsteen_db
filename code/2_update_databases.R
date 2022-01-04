@@ -47,16 +47,17 @@ update_dbs <- function(check_date = today(),
                       name = "setlists",
                       value = new_setlists,
                       append = TRUE)
-  }else{cat('Nothing new to add today :(')}
+    
+    ### update the concert link table
   
-  ### update the concert link table
+    ### first check which concerts are not currently in the table
   
-  ### first check which concerts are not currently in the table
-  
-  new_concerts = concerts_in_year %>%
-    anti_join(., springsteen_db %>%
-                tbl(., 'concerts') %>%
-                collect(), by = 'gig_url')
+    new_concerts = concerts_in_year %>%
+      anti_join(., springsteen_db %>%
+                  tbl(., 'concerts') %>%
+                  collect(), by = 'gig_url')
+    
+  }else{cat('Nothing new to add today :( \n')}
   
   ### check if there are any new concerts to collect and if so
   ### scrape the concert details
