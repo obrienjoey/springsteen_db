@@ -9,8 +9,11 @@
 
 ### libraries needed
 
-library(tidyverse)
+library(dplyr)
+library(httr)
+library(stringr)
 library(rvest)
+library(purrr)
 library(janitor)
 library(here)
 library(lubridate)
