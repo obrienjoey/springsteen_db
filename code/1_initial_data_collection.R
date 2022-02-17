@@ -29,8 +29,8 @@ gig_link_df = map2_df(unique(tour_df$tour), unique(tour_df$tour_url), get_tour_g
 song_df = get_songs()
 ### and add the lyrics and album details of each of these songs
 song_df = song_df %>%
-  mutate(details = map(.x = links, .f = lyrics_and_album)) %>%
-  unnest_wider(details)
+  mutate(details = map(.x = links, .f = get_lyrics_and_album)) %>%
+  tidyr::unnest_wider(details)
 
 ### lastly lets save all these details to our SQL database
 ### now to load it into a sql database

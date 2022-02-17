@@ -15,6 +15,7 @@ library(stringr)
 library(rvest)
 library(purrr)
 library(janitor)
+library(readr)
 library(here)
 library(lubridate)
 
@@ -26,7 +27,6 @@ library(DBI)
 ### plotting options
 
 ### functions used
-
 
 get_concerts_by_year <- function(year = 2021){
   
@@ -194,8 +194,15 @@ get_lyrics_and_album = function(song_url = '/song:born-to-run'){
   
   html = rvest::read_html(paste0(base_url, song_url))
   
+  table_titles = html %>% 
+    html_elements('ul.yui-nav') %>% 
+    html_text() %>% 
+    str_split('\n') %>% 
+    purrr::pluck(1)
+  
   lyrics = html %>%
-    html_elements("[id$='wiki-tab-0-5']") %>%
+    html_elements(paste0("[id$='wiki-tab-0-", 
+                         which(table_titles == 'Lyrics')-1, "']")) %>%
     html_elements('p') %>%
     html_text() %>%
     paste(collapse = ' ') %>%
@@ -219,4 +226,16 @@ get_lyrics_and_album = function(song_url = '/song:born-to-run'){
     album = ''
   }
   return(c(lyrics = lyrics[[1]], album = album[1]))
+}
+
+csv_update_check <- function(df, file_location){
+  
+  ### checks if a df is the same as the one found in the csv
+  ### at file location, and if not it replaces the csv with df
+  
+  csv_df <- readr::read_csv(file_location,
+                            col_types = readr::cols(.default = "c"))
+  if(!all_equal(df, csv_df)){
+    readr::write_csv(df, file_location)
+  }
 }
