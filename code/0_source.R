@@ -17,6 +17,7 @@ library(purrr)
 library(janitor)
 library(readr)
 library(here)
+library(tidyr)
 library(lubridate)
 
 # database libraries
