@@ -37,9 +37,13 @@ update_csvs <- function(db_loc = here::here('database/springsteen_data.sqlite'))
   ### to be updated
   
   csv_update_check(concert_df, here('csv/concerts.csv'))
+  print('concert csv checked')
   csv_update_check(song_df, here('csv/songs.csv'))
+  print('song csv checked')
   csv_update_check(setlist_df, here('csv/setlists.csv'))
+  print('setlist csv checked')
   csv_update_check(tour_df, here('csv/tours.csv'))
+  print('tour csv checked')
   
   ### disconnect from the database
   DBI::dbDisconnect(springsteen_db)

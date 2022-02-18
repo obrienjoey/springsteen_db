@@ -237,6 +237,7 @@ csv_update_check <- function(df, file_location){
   csv_df <- readr::read_csv(file_location,
                             col_types = readr::cols(.default = "c"))
   if(!all_equal(df, csv_df)){
+    print('updating csv')
     readr::write_csv(df, file_location)
   }
 }
