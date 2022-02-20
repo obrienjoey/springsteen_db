@@ -6,13 +6,13 @@ The springsteen_db repository contains a collection of `R` scripts which are use
 
 The scripts collect four separate datasets
 
--- songs - describes information about songs played by or associated with Springsteen, including, in some cases, the album and lyrics.
+- songs - describes information about songs played by or associated with Springsteen, including, in some cases, the album and lyrics.
 
--- concerts - describes all concerts that he has played since 1973, including the name of the venue, location, and date.
+- concerts - describes all concerts that he has played since 1973, including the name of the venue, location, and date.
 
--- setlists - describes the songs which make up the setlists performed at each show.
+- setlists - describes the songs which make up the setlists performed at each show.
 
--- tours - describes which tour was associated with each show.
+- tours - describes which tour was associated with each show.
 
 ## Data storage
 
