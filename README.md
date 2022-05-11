@@ -18,7 +18,7 @@ The scripts collect four separate datasets
 
 The data is stored two ways: 
 
-1. The four tables are stored in a sqllite database found in `database\springsteen_data.sqlite`.
+1. The four tables are stored in a SQLite database found in `database\springsteen_data.sqlite`.
 
 2. Each table is also stored in a csv file in `csv\`.
 
